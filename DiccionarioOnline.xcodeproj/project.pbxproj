@@ -12,6 +12,11 @@
 		E6EA0F091A691030001026DE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6EA0F081A691030001026DE /* Images.xcassets */; };
 		E6EA0F0C1A691030001026DE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6EA0F0A1A691030001026DE /* LaunchScreen.xib */; };
 		E6EA0F181A691031001026DE /* DiccionarioOnlineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E6EA0F171A691031001026DE /* DiccionarioOnlineTests.m */; };
+		E6EA0F231A69109C001026DE /* RCRWordsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E6EA0F221A69109C001026DE /* RCRWordsModel.m */; };
+		E6EA0F261A69115D001026DE /* Vocabwords.txt in Resources */ = {isa = PBXBuildFile; fileRef = E6EA0F251A69115D001026DE /* Vocabwords.txt */; };
+		E6EA0F2A1A69149C001026DE /* RCRWordsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6EA0F281A69149C001026DE /* RCRWordsTableViewController.m */; };
+		E6EA0F301A691FBA001026DE /* RCRDefinitionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6EA0F2E1A691FBA001026DE /* RCRDefinitionViewController.m */; };
+		E6EA0F311A691FBA001026DE /* RCRDefinitionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6EA0F2F1A691FBA001026DE /* RCRDefinitionViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +40,14 @@
 		E6EA0F111A691031001026DE /* DiccionarioOnlineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DiccionarioOnlineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6EA0F161A691031001026DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E6EA0F171A691031001026DE /* DiccionarioOnlineTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiccionarioOnlineTests.m; sourceTree = "<group>"; };
+		E6EA0F211A69109C001026DE /* RCRWordsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCRWordsModel.h; sourceTree = "<group>"; };
+		E6EA0F221A69109C001026DE /* RCRWordsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCRWordsModel.m; sourceTree = "<group>"; };
+		E6EA0F251A69115D001026DE /* Vocabwords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Vocabwords.txt; sourceTree = "<group>"; };
+		E6EA0F271A69149C001026DE /* RCRWordsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCRWordsTableViewController.h; sourceTree = "<group>"; };
+		E6EA0F281A69149C001026DE /* RCRWordsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCRWordsTableViewController.m; sourceTree = "<group>"; };
+		E6EA0F2D1A691FBA001026DE /* RCRDefinitionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCRDefinitionViewController.h; sourceTree = "<group>"; };
+		E6EA0F2E1A691FBA001026DE /* RCRDefinitionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCRDefinitionViewController.m; sourceTree = "<group>"; };
+		E6EA0F2F1A691FBA001026DE /* RCRDefinitionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RCRDefinitionViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +94,8 @@
 				E6EA0F081A691030001026DE /* Images.xcassets */,
 				E6EA0F0A1A691030001026DE /* LaunchScreen.xib */,
 				E6EA0F011A691030001026DE /* Supporting Files */,
+				E6EA0F241A69109F001026DE /* Models */,
+				E6EA0F2C1A6914A4001026DE /* Controllers */,
 			);
 			path = DiccionarioOnline;
 			sourceTree = "<group>";
@@ -109,6 +124,28 @@
 				E6EA0F161A691031001026DE /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E6EA0F241A69109F001026DE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E6EA0F251A69115D001026DE /* Vocabwords.txt */,
+				E6EA0F211A69109C001026DE /* RCRWordsModel.h */,
+				E6EA0F221A69109C001026DE /* RCRWordsModel.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		E6EA0F2C1A6914A4001026DE /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E6EA0F271A69149C001026DE /* RCRWordsTableViewController.h */,
+				E6EA0F281A69149C001026DE /* RCRWordsTableViewController.m */,
+				E6EA0F2D1A691FBA001026DE /* RCRDefinitionViewController.h */,
+				E6EA0F2E1A691FBA001026DE /* RCRDefinitionViewController.m */,
+				E6EA0F2F1A691FBA001026DE /* RCRDefinitionViewController.xib */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -191,8 +228,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6EA0F261A69115D001026DE /* Vocabwords.txt in Resources */,
 				E6EA0F0C1A691030001026DE /* LaunchScreen.xib in Resources */,
 				E6EA0F091A691030001026DE /* Images.xcassets in Resources */,
+				E6EA0F311A691FBA001026DE /* RCRDefinitionViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,7 +250,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E6EA0F071A691030001026DE /* AppDelegate.m in Sources */,
+				E6EA0F2A1A69149C001026DE /* RCRWordsTableViewController.m in Sources */,
+				E6EA0F301A691FBA001026DE /* RCRDefinitionViewController.m in Sources */,
 				E6EA0F041A691030001026DE /* main.m in Sources */,
+				E6EA0F231A69109C001026DE /* RCRWordsModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

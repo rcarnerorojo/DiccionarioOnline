@@ -10,4 +10,38 @@
 
 @implementation RCRWordsModel
 
+-(id)init{
+    if (self = [super init]){
+        
+        NSURL *urlToFile = [[NSBundle mainBundle] URLForResource:@"Vocabwords" withExtension:@"txt"];
+        _words = [NSDictionary dictionaryWithContentsOfURL:urlToFile];
+    }
+    
+    return self;
+}
+
+-(NSArray *) letters{
+    
+    return [[self.words allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+}
+
+-(NSString *) letterAtIndex: (NSInteger) aLetterIndex{
+    
+    return [[self letters] objectAtIndex:aLetterIndex];
+}
+
+-(NSString *) wordAtIndex:(NSInteger) aWordIndex
+          inLetterAtIndex:(NSInteger) aLetterIndex{
+    
+    NSString *letter = [self letterAtIndex:aLetterIndex];
+    NSArray *wordsThatStartWithLetter = [self.words objectForKey:letter];
+    return [wordsThatStartWithLetter objectAtIndex:aWordIndex];
+}
+
+-(NSArray *) wordsAtIndex:(NSInteger)anIndex{
+    
+    NSString *letter = [[self letters] objectAtIndex:anIndex];
+    return [[self.words objectForKey:letter] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+}
+
 @end

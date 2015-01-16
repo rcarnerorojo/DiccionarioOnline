@@ -10,4 +10,11 @@
 
 @interface RCRWordsModel : NSObject
 
+@property NSDictionary *words;
+
+-(NSArray *) letters;
+-(NSString *) letterAtIndex: (NSInteger) aLetterIndex;
+-(NSString *) wordAtIndex:(NSInteger) aWordIndex inLetterAtIndex:(NSInteger) aLetterIndex;
+-(NSArray *) wordsAtIndex:(NSInteger) anIndex;
+
 @end

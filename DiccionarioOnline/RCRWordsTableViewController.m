@@ -7,12 +7,24 @@
 //
 
 #import "RCRWordsTableViewController.h"
+#import "RCRDefinitionViewController.h"
 
 @interface RCRWordsTableViewController ()
 
 @end
 
 @implementation RCRWordsTableViewController
+
+
+-(id) initWithModel:(RCRWordsModel *)aModel{
+    
+    if (self = [super init]){
+        _wordsModel = aModel;
+        self.title = @"English Vocabulary";
+    }
+    return self;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -32,26 +44,44 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    // Return the number of sections. Tantas secciones como letras
+    return [[self.wordsModel letters] count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [[self.wordsModel wordsAtIndex:section] count];
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
-    // Configure the cell...
+    //Reuse Id
+    
+    static NSString *cellId = @"DiccionaryCell";
+    
+    //Averiguar la palabra
+    NSInteger indexWord = indexPath.section;
+    NSString *word = [self.wordsModel wordAtIndex:indexPath.row inLetterAtIndex:indexWord];
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    
+    if (cell == nil){//no hay celdas de este tipo en caché
+        //tengo que crear la celda a pelo
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellId];
+    }
+    
+    //sincronizar modelo (personaje) -> vista (celda)
+    cell.textLabel.text = word;
     
     return cell;
 }
-*/
+
+
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    
+    return [self.wordsModel letterAtIndex:section];
+}
 
 /*
 // Override to support conditional editing of the table view.
@@ -87,30 +117,33 @@
 }
 */
 
-/*
-#pragma mark - Table view delegate
+#pragma mark - Table Delegate
 
-// In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here, for example:
-    // Create the next view controller.
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:<#@"Nib name"#> bundle:nil];
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    // Pass the selected object to the new view controller.
+    //Averiguar la palabra
+    NSInteger indexWord = indexPath.section;
+    NSString *word = [self.wordsModel wordAtIndex:indexPath.row inLetterAtIndex:indexWord];
     
-    // Push the view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
+    //Notificar al delegado
+    if ([self.delegate respondsToSelector:@selector(wordsTableViewController:didWord:)]){
+        //Entiende el mensaje que le mando
+        [self.delegate wordsTableViewController:self didWord:word];
+    }
+    
 }
-*/
 
-/*
-#pragma mark - Navigation
+#pragma mark - RCRWordsTableViewControllerDelegate
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)wordsTableViewController:(RCRWordsTableViewController*)wVC
+                               didWord:(NSString*) word{
+    
+    //crear un definitionVC
+    RCRDefinitionViewController *dVC = [[RCRDefinitionViewController alloc]initWithModel:word];
+    
+    //pushearlo
+    [self.navigationController pushViewController:dVC animated:YES];
+    
 }
-*/
 
 @end
