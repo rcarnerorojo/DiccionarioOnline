@@ -19,7 +19,7 @@
 
 @end
 
-@interface RCRWordsTableViewController : UITableViewController
+@interface RCRWordsTableViewController : UITableViewController<RCRWordsTableViewControllerDelegate>
 
 @property (strong) RCRWordsModel* wordsModel;
 // Las propiedades de delegate son siempre weak

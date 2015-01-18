@@ -24,30 +24,14 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     
-    //Creamos el modelo
-    RCRWordsModel *wordsModel = [[RCRWordsModel alloc] init];
     
-    //Creamos los controladores
-    RCRWordsTableViewController *tVC = [[RCRWordsTableViewController alloc] initWithModel:wordsModel];
-    RCRDefinitionViewController *dVC = [[RCRDefinitionViewController alloc] initWithModel:@"Starship"];
-    
-    
-    //Creamos los combinadores
-    UINavigationController *tableNav = [[UINavigationController alloc]init];
-    [tableNav pushViewController:tVC animated:NO];
-    
-    UINavigationController *definitionNav = [[UINavigationController alloc]init];
-    [definitionNav pushViewController:dVC animated:NO];
-    
-    UISplitViewController *splitVC = [[UISplitViewController alloc]init];
-    [splitVC setViewControllers:@[tableNav,definitionNav]];
-    
-    //Asignamos delegados
-    splitVC.delegate = dVC;
-    tVC.delegate = dVC;
-    
-    //Lo asignamos como root
-    [self.window setRootViewController:splitVC];
+    //Compruebo el tipo de pantalla
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad){
+        //tableta
+        [self configureForPad];
+    }else{
+        [self configureForPhone];
+    }
  
     [self.window makeKeyAndVisible];
     return YES;
@@ -73,6 +57,54 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+#pragma mark - Configuration
+
+-(void)configureForPad{
+    
+    //Creamos el modelo
+    RCRWordsModel *wordsModel = [[RCRWordsModel alloc] init];
+    
+    //Creamos los controladores
+    RCRWordsTableViewController *tVC = [[RCRWordsTableViewController alloc] initWithModel:wordsModel];
+    RCRDefinitionViewController *dVC = [[RCRDefinitionViewController alloc] initWithModel:@"Starship"];
+    
+    //Creamos los combinadores
+    UINavigationController *tableNav = [[UINavigationController alloc]init];
+    [tableNav pushViewController:tVC animated:NO];
+    
+    UINavigationController *definitionNav = [[UINavigationController alloc]init];
+    [definitionNav pushViewController:dVC animated:NO];
+    
+    UISplitViewController *splitVC = [[UISplitViewController alloc]init];
+    [splitVC setViewControllers:@[tableNav,definitionNav]];
+    
+    //Asignamos delegados
+    splitVC.delegate = dVC;
+    tVC.delegate = dVC;
+    
+    //Lo asignamos como root
+    [self.window setRootViewController:splitVC];
+}
+
+-(void)configureForPhone{
+    
+    //Creamos el modelo
+    RCRWordsModel *wordsModel = [[RCRWordsModel alloc] init];
+    
+    //Creamos los controladores
+    RCRWordsTableViewController *tVC = [[RCRWordsTableViewController alloc] initWithModel:wordsModel];
+    
+    //Creamos los combinadores
+    UINavigationController *tableNav = [[UINavigationController alloc]init];
+    [tableNav pushViewController:tVC animated:NO];
+    
+    //Asignamos delegados
+    tVC.delegate = tVC;
+    
+    //Lo asignamos como root
+    [self.window setRootViewController:tableNav];
 }
 
 @end
